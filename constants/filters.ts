@@ -1,0 +1,23 @@
+export const FILTERS: string[] = [
+    "Pet Friendly",
+    "Luxury Villa",
+    "Free Parking",
+    "City View",
+    "Riverfront",
+    "Private Garden", 
+    "Mountain View", 
+    "Ski Access", 
+    "Beachfront", 
+    "Private Pool", 
+    "Chef Service", 
+    "Ocean View", 
+    "Self Checkin",
+    "Countryside", 
+    "Fireplace", 
+    "Safari", 
+    "Guided Tours", 
+    "Free Breakfast", 
+    "City Center", 
+    "Free WiFi", 
+    "Public Transport"
+];

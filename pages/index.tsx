@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { HERO_BACKGROUND } from "@/constants/images";
+import { FILTERS } from "@/constants/filters";
+import Pill from "@/components/common/Pill";
 
 const HomePage: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<string>("");
+
   return (
     <>
       {/* Hero Section */}
@@ -24,6 +28,21 @@ const HomePage: React.FC = () => {
           <p className="text-lg md:text-2xl max-w-2xl mx-auto">
             The best prices for over 2 million properties worldwide.
           </p>
+        </div>
+      </section>
+      {/* Filter Section */}
+      <section className="bg-gray-50 py-6 px-4">
+        <div className="flex flex-wrap gap-3 justify-center">
+          {FILTERS.map((filter) => (
+            <Pill
+              key={filter}
+              label={filter}
+              isActive={activeFilter === filter}
+              onClick={() =>
+                setActiveFilter(activeFilter === filter ? "" : filter)
+              }
+            />
+          ))}
         </div>
       </section>
     </>
