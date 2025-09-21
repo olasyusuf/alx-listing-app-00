@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import { HERO_BACKGROUND } from "@/constants/images";
 import { FILTERS } from "@/constants/filters";
+import { PROPERTYLISTINGSAMPLE } from "@/constants";
+import { PropertyProps } from "@/interfaces";
 import Pill from "@/components/common/Pill";
+import PropertyCard from "@/components/common/PropertyCard";
 
 const HomePage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("");
+
+  // Filter properties based on selected pill
+  const filteredProperties: PropertyProps[] = activeFilter
+    ? PROPERTYLISTINGSAMPLE.filter((property) =>
+        property.category.includes(activeFilter)
+      )
+    : PROPERTYLISTINGSAMPLE;
 
   return (
     <>
@@ -17,10 +27,7 @@ const HomePage: React.FC = () => {
           backgroundPosition: "center",
         }}
       >
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-
-        {/* Hero Content */}
         <div className="relative z-10 px-6">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Find your favorite place here!
@@ -30,6 +37,7 @@ const HomePage: React.FC = () => {
           </p>
         </div>
       </section>
+
       {/* Filter Section */}
       <section className="bg-gray-50 py-6 px-4">
         <div className="flex flex-wrap gap-3 justify-center">
@@ -42,6 +50,18 @@ const HomePage: React.FC = () => {
                 setActiveFilter(activeFilter === filter ? "" : filter)
               }
             />
+          ))}
+        </div>
+      </section>
+
+      {/* Listing Section */}
+      <section className="py-10 px-6">
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          Available Properties
+        </h2>
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {filteredProperties.map((property, index) => (
+            <PropertyCard key={index} property={property} />
           ))}
         </div>
       </section>
